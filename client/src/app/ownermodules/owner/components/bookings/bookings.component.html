@@ -1,0 +1,42 @@
+<!-- Assuming isLoading is a boolean variable that indicates if data is still loading -->
+
+<!-- Loading spinner -->
+<div *ngIf="isLoading" class="bg-dark" style="min-height: 100vh;">
+  <app-loader-spinner></app-loader-spinner>
+</div>
+
+<!-- Job listings container -->
+<ul class="job-listings-container p-4 bg-dark pt-4 text-light" *ngIf="!isLoading" style="min-height: 100vh; list-style-type: none;">
+  <h1 style="margin-top: 10vh;">Job Listings</h1>
+
+  <!-- Loop through the job listings using *ngFor -->
+  <li *ngFor="let job of bookings" class="bg-secondary text-light mb-4 p-4" style="width: 100%;">
+    <div>
+      <strong>Job Title:</strong> {{ job.title }}
+    </div>
+    <div>
+      <strong>Company:</strong> {{ job.companyName }}
+    </div>
+    <div>
+      <strong>Location:</strong> {{ job.location }}
+    </div>
+    <div>
+      <strong>Salary:</strong> {{ job.salary }}
+    </div>
+    <div>
+      <strong>Posted Date:</strong> {{ job.postedDate | date }}
+    </div>
+    <div>
+      <strong>Job Description:</strong>
+      <p>{{ job.description }}</p>
+    </div>
+    <!-- You can add more information about the job here as needed -->
+  </li>
+</ul>
+<!-- Submit button -->
+<button (click)="submitForm()" class="btn btn-primary mt-4">Submit</button>
+
+<!-- Success alert message -->
+<div *ngIf="isFormSubmitted" class="alert alert-success mt-4">
+  Form submitted successfully!
+</div>
